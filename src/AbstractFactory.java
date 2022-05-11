@@ -1,3 +1,12 @@
+
+
+// calculate the loan payment for different banks like HDFC, ICICI, SBI etc. a real world example.
+
+
+// Step 1
+
+//We are going to create a Bank interface.
+
 import java.io.*;      /*we are using io concept in our class that's why we are importing io pacakage.*/
 
 
@@ -92,7 +101,7 @@ abstract class Loan
 
 
               rate=annual interest rate/12*100;
-              n=number of monthly installments;
+              noOfMonthlyInstallment=number of monthly installments;
               1year=12 months.
               so, n=years*12;
 
@@ -100,12 +109,12 @@ abstract class Loan
 
 
         double EMI;
-        int n;
+        int noOfMonthlyInstallment;
 
-        n=years*12;
+        noOfMonthlyInstallment =years*12;
         rate=rate/1200;
 
-        EMI=((rate*Math.pow((1+rate),n))/((Math.pow((1+rate),n))-1))*loanamount;
+        EMI=((rate*Math.pow((1+rate), noOfMonthlyInstallment))/((Math.pow((1+rate), noOfMonthlyInstallment))-1))*loanamount;
 
         System.out.println("your's monthly EMI is "+ EMI +" for the amount "+loanamount+" you have borrowed " );
 
@@ -338,9 +347,6 @@ class AbstractFactoryPatternExample
 
 
 }//End of the  AbstractFactoryPatternExample
-
-
-
 
 
 
