@@ -352,6 +352,159 @@ class AbstractFactoryPatternExample
 
 
 
+import java.io.*;      /*we are using io concept in our class that's why we are importing io pacakage.*/
+
+//Create a loan abstract class.
+
+abstract class Loan
+{
+
+    protected double rate;
+
+    abstract void getInterestRate(double rate);
+
+    public void calculateLoanPayment(double loanamount, int years)
+    {
+        /*
+              to calculate the monthly loan payment i.e. EMI
+
+
+              rate=annual interest rate/12*100;
+              n=number of monthly installments;
+              1year=12 months.
+              so, n=years*12;
+
+            */
+
+
+        double EMI;
+        int n;
+
+        n=years*12;
+        rate=rate/1200;
+
+        EMI=((rate*Math.pow((1+rate),n))/((Math.pow((1+rate),n))-1))*loanamount;
+
+        System.out.println("your's monthly EMI is "+ EMI +" for the amount "+loanamount+" you have borrowed " );
+
+
+
+    }
+
+
+}// end of the Loan abstract class.
+
+//Create concrete classes that will extends the  Loan abstract class.
+
+
+class HomeLoan extends Loan
+{
+
+    public void getInterestRate(double r)
+    {
+
+        rate=r;
+
+    }
+
+
+}//End of the HomeLoan class.
+
+
+
+class BussinessLoan extends Loan
+{
+
+    public void getInterestRate(double r)
+    {
+
+        rate=r;
+
+    }
+
+
+}//End of the BusinessLoan class.
+
+
+
+class EducationLoan extends Loan
+{
+
+    public void getInterestRate(double r)
+    {
+
+        rate=r;
+
+    }
+
+
+}//End of the EducationLoan class.
+
+class LoanFactory
+{
+    public static Loan getLoan(String type) throws Exception
+    {
+        switch (type)
+        {
+            case "Home":
+                return new HomeLoan();
+            case "Business":
+                return new BusinessLoan();
+            case "Education":
+                return new EducationLoan();
+            default:
+                throw new Exception( "Loan type : "+type+" cannot be instantiated");
+        }
+    }
+
+
+}//End of the LoanFactory class.
+class AbstractFactoryPatternExample
+{
+
+    public static void main(String args[]) throws Exception
+    {
+        LoanFactory shapeFactory = new LoanFactory();
+        Loan home=LoanFactory.getLoan("Home");
+        home.getInterestRate(0.05);
+       Loan business = LoanFactory.getLoan("Business");
+        business.getInterestRate(0.05);
+
+        Loan education = LoanFactory.getLoan("Education");
+        education.getInterestRate(0.05);
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter the type of loan you want to take, like home loan or bussiness loan or education loan : ");
+
+        String loanName=br.readLine();
+        System.out.print("\n");
+
+
+        double rate=Double.parseDouble(br.readLine());
+
+
+        System.out.print("\n");
+        System.out.print("Enter the loan amount you want to take: ");
+
+        double loanAmount=Double.parseDouble(br.readLine());
+
+
+
+        System.out.print("\n");
+        System.out.print("Enter the number of years to pay your entire loan amount: ");
+
+        int years=Integer.parseInt(br.readLine());
+
+
+        System.out.print("\n");
+
+
+    }
+
+}//End of the  AbstractFactoryPatternExample
+
+
+
 
 
 
